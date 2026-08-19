@@ -1,23 +1,13 @@
 ﻿<script>
 (function() {
-    const targetJSON = "{{ "index.json" | absURL }}";
-    
-    // 强制拦截并修正所有 Fetch 请求
-    const originalFetch = window.fetch;
-    window.fetch = function(input, init) {
-        if (typeof input === 'string' && input.includes('index.json')) {
-            arguments[0] = targetJSON;
+    const targetUrl = "/Sky_distant-s-Blog/index.json";
+    const _fetch = window.fetch;
+    window.fetch = function(resource, config) {
+        let url = typeof resource === 'string' ? resource : (resource ? resource.url : '');
+        if (!url || url.includes('undefined')) {
+            resource = targetUrl;
         }
-        return originalFetch.apply(this, arguments);
-    };
-
-    // 强制拦截并修正所有 XHR 请求
-    const originalOpen = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function(method, url) {
-        if (typeof url === 'string' && url.includes('index.json')) {
-            arguments[1] = targetJSON;
-        }
-        return originalOpen.apply(this, arguments);
+        return _fetch.call(this, resource, config);
     };
 })();
 </script>
