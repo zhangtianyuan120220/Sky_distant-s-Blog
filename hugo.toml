@@ -1,2 +1,5 @@
 locale = "zh-cn"
 defaultContentLanguage = "zh-cn"
+
+canonifyURLs = false
+relativeURLs = false
