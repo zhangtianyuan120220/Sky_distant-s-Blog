@@ -19,7 +19,7 @@ html[data-scheme="dark"] .chroma {
     border: 1px solid #2e3440 !important;
 }
 
-/* 优化原生 Copy 按钮样式，注入中文提示 */
+/* 优化 Copy 按钮样式 */
 .highlight .copyCodeButton, pre .copyCodeButton {
     background-color: rgba(255, 255, 255, 0.15) !important;
     color: #eceff4 !important;
@@ -40,7 +40,6 @@ html[data-scheme="dark"] .chroma {
     color: #ffffff !important;
 }
 
-/* 如果按钮原本为空白，用 CSS 兜底显示 "复制" 文字 */
 .highlight .copyCodeButton:empty::before, pre .copyCodeButton:empty::before {
     content: "复制";
 }
@@ -56,18 +55,18 @@ html[data-scheme="dark"] .chroma {
 
 <script>
 (function() {
-    // 搜索接口修复逻辑
-    const targetUrl = "/Sky_distant-s-Blog/index.json";
+    // 自定义域名根目录下的搜索索引路径
+    const targetUrl = "/index.json";
     const _fetch = window.fetch;
     window.fetch = function(resource, config) {
         let url = typeof resource === 'string' ? resource : (resource ? resource.url : '');
-        if (!resource || !url || url.includes('undefined')) {
+        if (!resource || !url || url.includes('undefined') || url.includes('Sky_distant-s-Blog')) {
             arguments[0] = targetUrl;
         }
         return _fetch.apply(this, arguments);
     };
 
-    // 复制按钮点击互动（显示“已复制！”反馈）
+    // 复制按钮点击互动
     document.addEventListener('click', function(e) {
         const btn = e.target.closest('.copyCodeButton');
         if (!btn) return;
