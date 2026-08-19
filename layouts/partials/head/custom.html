@@ -2,7 +2,7 @@
 (function() {
     const targetJSON = "{{ "index.json" | absURL }}";
     
-    // 1. 完美拦截 Fetch 请求
+    // 强制拦截并修正所有 Fetch 请求
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
         if (typeof input === 'string' && input.includes('index.json')) {
@@ -11,7 +11,7 @@
         return originalFetch.apply(this, arguments);
     };
 
-    // 2. 完美拦截 XHR 请求
+    // 强制拦截并修正所有 XHR 请求
     const originalOpen = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function(method, url) {
         if (typeof url === 'string' && url.includes('index.json')) {
