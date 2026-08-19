@@ -1,3 +1,10 @@
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+
+[languages]
+  [languages.zh-cn]
+    languageName = "中文"
+    weight = 1
 defaultContentLanguage = "zh-cn"
 languageCode = "zh-cn"
 baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
