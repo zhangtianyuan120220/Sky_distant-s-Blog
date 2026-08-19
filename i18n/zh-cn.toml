@@ -1,13 +1,8 @@
 [search]
-title = "搜索"
-placeholder = "搜索..."
-resultTitle = "{count} 篇文章（耗时 {time} 秒）"
-
-[search.resultTitle]
-other = "{count} 篇文章（耗时 {time} 秒）"
+other = "搜索"
 
 [search.placeholder]
 other = "搜索..."
 
-[search.title]
-other = "搜索"
+[search.resultTitle]
+other = "{count} 篇文章（耗时 {time} 秒）"
