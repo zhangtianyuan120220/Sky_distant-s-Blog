@@ -1,8 +1,10 @@
 baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
-locale = "zh-cn"
-defaultContentLanguage = "zh"
+languageCode = "zh-cn"
 title = "Sky_distant's Blog"
 theme = "stack"
+
+buildFuture = true
+buildDrafts = true
 
 [params]
   [params.colorScheme]
