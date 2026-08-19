@@ -1,31 +1,30 @@
 ﻿<style>
-/* 浅色模式下：将代码块背景调为极浅的灰蓝色 (#f6f8fa)，并强化文字颜色 */
+/* 不管浅色还是深色模式，代码块内部统一采用极佳对比度的深色背景，解决白色字符看不清的问题 */
+.highlight, div.highlight, .chroma, pre {
+    background-color: #1e1e1e !important;
+    border-radius: 8px !important;
+}
+
+.chroma code, .chroma span {
+    color: inherit;
+}
+
+/* 浅色模式下：加上适度灰边框，融入白色大背景 */
 html[data-scheme="light"] .highlight,
 html[data-scheme="light"] div.highlight,
-html[data-scheme="light"] .chroma,
-html[data-scheme="light"] pre {
-    background-color: #f6f8fa !important;
-    border: 1px solid #e1e4e8 !important;
-    border-radius: 8px !important;
-}
-
-/* 强制修正浅色模式下代码字符的颜色，确保变量名和数字清晰显示 */
 html[data-scheme="light"] .chroma {
-    color: #24292e !important;
+    border: 1px solid #e1e4e8 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
 }
 
-/* 深色模式下：保持深色高对比度 (#1e1e1e) */
+/* 深色模式下：保持暗色融合边框 */
 html[data-scheme="dark"] .highlight,
 html[data-scheme="dark"] div.highlight,
-html[data-scheme="dark"] .chroma,
-html[data-scheme="dark"] pre {
-    background-color: #1e1e1e !important;
+html[data-scheme="dark"] .chroma {
     border: 1px solid #2d2d2d !important;
-    border-radius: 8px !important;
-    color: #e6edf3 !important;
 }
 
-/* 行内代码微调 */
+/* 行内单词代码微调 */
 :not(pre) > code {
     background-color: rgba(175, 184, 193, 0.2) !important;
     padding: 2px 6px !important;
