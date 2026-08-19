@@ -1,4 +1,39 @@
-﻿<script>
+﻿<style>
+/* 代码块背景色：自动绑定主题卡片背景色与边框 */
+.highlight, div.highlight, .chroma, pre {
+    background-color: var(--card-background) !important;
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+    border-radius: 8px !important;
+}
+
+/* 浅色模式下的代码块微调（增加轻微灰阶底色提升对比度） */
+html[data-scheme="light"] .highlight,
+html[data-scheme="light"] div.highlight,
+html[data-scheme="light"] .chroma,
+html[data-scheme="light"] pre {
+    background-color: #f6f8fa !important;
+    border-color: #e1e4e8 !important;
+}
+
+/* 深色模式下的代码块微调 */
+html[data-scheme="dark"] .highlight,
+html[data-scheme="dark"] div.highlight,
+html[data-scheme="dark"] .chroma,
+html[data-scheme="dark"] pre {
+    background-color: #1e1e1e !important;
+    border-color: #2d2d2d !important;
+}
+
+/* 单行内联代码（Inline Code）随主题动态切换 */
+:not(pre) > code {
+    background-color: var(--card-background) !important;
+    border: 1px solid var(--border-color, rgba(0,0,0,0.1)) !important;
+    padding: 2px 5px !important;
+    border-radius: 4px !important;
+}
+</style>
+
+<script>
 (function() {
     const targetUrl = "/Sky_distant-s-Blog/index.json";
     const _fetch = window.fetch;
