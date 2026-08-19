@@ -1,0 +1,18 @@
+widget:
+  categories:
+    title: "分类"
+  category:
+    title: "分类"
+  tagCloud:
+    title: "标签"
+  tags:
+    title: "标签"
+  archives:
+    title: "归档"
+  search:
+    title: "搜索"
+
+categories:
+  title: "分类"
+category:
+  title: "分类"

@@ -1,0 +1,34 @@
+﻿<a href="{{ .Get "url" }}" class="link-card" target="_blank" rel="noopener">
+    <div class="link-card-content">
+        <span class="link-card-title">{{ .Get "name" }}</span>
+        <span class="link-card-desc">{{ .Get "desc" }}</span>
+    </div>
+</a>
+
+<style>
+.link-card {
+    display: block;
+    background: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    padding: 16px;
+    margin: 10px 0;
+    border-radius: 12px;
+    text-decoration: none !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.link-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-l);
+}
+.link-card-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 4px;
+}
+.link-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+}
+</style>

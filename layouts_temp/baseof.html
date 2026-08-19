@@ -1,0 +1,17 @@
+{{- $lang := .Site.Language.Lang | default .Site.LanguageCode | default "zh" -}}
+
+
+    
+        {{- partial "head/head.html" . -}}
+        {{- block "head" . -}}{{- end -}}
+    
+    
+        {{- partial "head/colorScheme" . -}}
+        
+            {{- partial "sidebar/left.html" . -}}
+            
+                {{- block "main" . -}}{{- end -}}
+            
+            {{- if .IsPage -}}
+                {{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}
+            {{- end -}}

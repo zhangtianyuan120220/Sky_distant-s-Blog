@@ -1,0 +1,48 @@
+# 导航主菜单
+[[main]]
+    identifier = "home"
+    name = "主页"
+    url = "/"
+    weight = 1
+    [main.params]
+        icon = "home"
+
+[[main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 2
+    [main.params]
+        icon = "archive"
+
+[[main]]
+    identifier = "search"
+    name = "搜索文章"
+    url = "/search/"
+    weight = 3
+    [main.params]
+        icon = "search"
+
+[[main]]
+    identifier = "links"
+    name = "友情链接"
+    url = "/links/"
+    weight = 4
+    [main.params]
+        icon = "link"
+
+[[main]]
+    identifier = "roadmap"
+    name = "开发计划"
+    url = "/page/roadmap/"
+    weight = 5
+    [main.params]
+        icon = "code"
+
+# 顶部社交链接
+[[social]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/zhangtianyuan120220"
+    [social.params]
+        icon = "brand-github"

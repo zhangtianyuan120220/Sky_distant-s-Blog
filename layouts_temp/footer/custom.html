@@ -1,0 +1,19 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 寻找所有分类小部件的标题容器
+    const categoryWidgets = document.querySelectorAll('.widget-categories, .widget.categories');
+    categoryWidgets.forEach(widget => {
+        const titleContainer = widget.querySelector('.widget-title');
+        if (titleContainer && !titleContainer.innerText.includes('分类')) {
+            // 如果里面没有“分类”二字，则创建一个 span 强制插在 SVG 图标后面
+            const span = document.createElement('span');
+            span.innerText = "分类";
+            span.style.marginLeft = "6px";
+            span.style.fontSize = "16px";
+            span.style.fontWeight = "700";
+            span.style.color = "var(--card-text-color-main, #333)";
+            titleContainer.appendChild(span);
+        }
+    });
+});
+</script>

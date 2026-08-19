@@ -1,0 +1,23 @@
+languageCode = "zh"
+
+[author]
+    name = "Sky_distant"
+    headline = "Sky_distant的个人记录"
+
+[sidebar]
+    subtitle = "Sky_distant的个人记录"
+    compact = false
+
+[widgets]
+    homepage = [
+        { type = "search" },
+        { type = "categories" },
+        { type = "tag-cloud" },
+        { type = "archives" }
+    ]
+    page = [
+        { type = "toc" },
+        { type = "categories" },
+        { type = "tag-cloud" },
+        { type = "archives" }
+    ]

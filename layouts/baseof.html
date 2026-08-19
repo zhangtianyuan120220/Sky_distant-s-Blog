@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" dir="{{ .Site.Language.LanguageDirection | default "ltr" }}">
+    <head>
+        {{- block "head" . -}}{{- end -}}
+    </head>
+    <body class="{{ block "body-class" . }}{{ end }}">
+        {{- block "body" . -}}{{- end -}}
+    </body>
+</html>
