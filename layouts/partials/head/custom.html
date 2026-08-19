@@ -1,5 +1,6 @@
 ﻿<script>
 (function() {
+    // 1. fetch 路径自动修正
     const targetUrl = "/Sky_distant-s-Blog/index.json";
     const _fetch = window.fetch;
     window.fetch = function(resource, config) {
@@ -9,5 +10,29 @@
         }
         return _fetch.call(this, resource, config);
     };
+
+    // 2. 搜索结果统计文本纠错与空白兜底
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new MutationObserver(function() {
+            const info = document.querySelector('.search-result-info');
+            if (info) {
+                const text = info.textContent.trim();
+                // 将英文统计转为中文
+                const match = text.match(/(\d+)\s*PAGES?\s*\(([\d.]+)\s*SECONDS?\)/i);
+                if (match) {
+                    info.textContent = `${match[1]} 篇文章（耗时 ${match[2]} 秒）`;
+                    return;
+                }
+                // 若构建渲染为空，动态计算并展示文章数量
+                if (!text) {
+                    const items = document.querySelectorAll('.search-result, article');
+                    if (items.length > 0) {
+                        info.textContent = `${items.length} 篇文章`;
+                    }
+                }
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
 })();
 </script>
