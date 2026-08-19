@@ -1,26 +1,51 @@
 ﻿<style>
-/* 采用更浅柔的莫兰迪灰/冷烟灰背景，不突兀且清晰 */
+/* 莫兰迪灰背景代码块 */
 .highlight, div.highlight, .chroma, pre {
     background-color: #3b4252 !important;
     border-radius: 8px !important;
+    position: relative !important;
 }
 
-/* 浅色模式下：加上极浅柔和的边框与淡阴影 */
+/* 浅色与深色模式边框 */
 html[data-scheme="light"] .highlight,
 html[data-scheme="light"] div.highlight,
 html[data-scheme="light"] .chroma {
     border: 1px solid #d8dee9 !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
 }
-
-/* 深色模式下：保持无缝融合 */
 html[data-scheme="dark"] .highlight,
 html[data-scheme="dark"] div.highlight,
 html[data-scheme="dark"] .chroma {
     border: 1px solid #2e3440 !important;
 }
 
-/* 行内小代码块样式 */
+/* 优化原生 Copy 按钮样式，注入中文提示 */
+.highlight .copyCodeButton, pre .copyCodeButton {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #eceff4 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 3px 8px !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 10 !important;
+}
+
+.highlight .copyCodeButton:hover, pre .copyCodeButton:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+}
+
+/* 如果按钮原本为空白，用 CSS 兜底显示 "复制" 文字 */
+.highlight .copyCodeButton:empty::before, pre .copyCodeButton:empty::before {
+    content: "复制";
+}
+
+/* 行内代码样式 */
 :not(pre) > code {
     background-color: rgba(223, 226, 229, 0.4) !important;
     color: #d08770 !important;
@@ -31,6 +56,7 @@ html[data-scheme="dark"] .chroma {
 
 <script>
 (function() {
+    // 搜索接口修复逻辑
     const targetUrl = "/Sky_distant-s-Blog/index.json";
     const _fetch = window.fetch;
     window.fetch = function(resource, config) {
@@ -40,5 +66,27 @@ html[data-scheme="dark"] .chroma {
         }
         return _fetch.apply(this, arguments);
     };
+
+    // 复制按钮点击互动（显示“已复制！”反馈）
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.copyCodeButton');
+        if (!btn) return;
+
+        const codeBlock = btn.closest('.highlight, pre');
+        if (codeBlock) {
+            const code = codeBlock.querySelector('code')?.innerText || codeBlock.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const oldText = btn.textContent;
+                btn.textContent = '已复制！';
+                btn.style.backgroundColor = '#a3be8c';
+                btn.style.color = '#2e3440';
+                setTimeout(() => {
+                    btn.textContent = oldText || '复制';
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }, 1800);
+            }).catch(() => {});
+        }
+    });
 })();
 </script>
