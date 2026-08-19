@@ -1,32 +1,32 @@
 ﻿<style>
-/* 不管浅色还是深色模式，代码块内部统一采用极佳对比度的深色背景，解决白色字符看不清的问题 */
+/* --- 全局代码块基础样式（兼顾深浅色模式） --- */
 .highlight, div.highlight, .chroma, pre {
-    background-color: #1e1e1e !important;
+    /* 统一采用极具质感的深灰色背景（GitHub Dark 风格），比纯黑更高级、柔和 */
+    background-color: #24292e !important;
     border-radius: 8px !important;
 }
 
-.chroma code, .chroma span {
-    color: inherit;
-}
-
-/* 浅色模式下：加上适度灰边框，融入白色大背景 */
+/* --- 浅色模式（Light Mode）专用微调 --- */
 html[data-scheme="light"] .highlight,
 html[data-scheme="light"] div.highlight,
 html[data-scheme="light"] .chroma {
-    border: 1px solid #e1e4e8 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+    /* 使用稍显对比的浅灰边框，让代码块完美融入白色主体，不显突兀 */
+    border: 1px solid #d1d5da !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
 }
 
-/* 深色模式下：保持暗色融合边框 */
+/* --- 深色模式（Dark Mode）专用微调 --- */
 html[data-scheme="dark"] .highlight,
 html[data-scheme="dark"] div.highlight,
 html[data-scheme="dark"] .chroma {
-    border: 1px solid #2d2d2d !important;
+    /* 深色模式下采用全黑边框，自然融合 */
+    border: 1px solid #000000 !important;
 }
 
-/* 行内单词代码微调 */
+/* 行内小代码块样式优化 */
 :not(pre) > code {
-    background-color: rgba(175, 184, 193, 0.2) !important;
+    background-color: rgba(223, 226, 229, 0.3) !important;
+    color: #0366d6 !important;
     padding: 2px 6px !important;
     border-radius: 4px !important;
 }
@@ -34,14 +34,15 @@ html[data-scheme="dark"] .chroma {
 
 <script>
 (function() {
+    // 搜索路径修复逻辑
     const targetUrl = "/Sky_distant-s-Blog/index.json";
     const _fetch = window.fetch;
     window.fetch = function(resource, config) {
         let url = typeof resource === 'string' ? resource : (resource ? resource.url : '');
-        if (!url || url.includes('undefined')) {
-            resource = targetUrl;
+        if (!resource || !url || url.includes('undefined')) {
+            arguments[0] = targetUrl;
         }
-        return _fetch.call(this, resource, config);
+        return _fetch.apply(this, arguments);
     };
 })();
 </script>
