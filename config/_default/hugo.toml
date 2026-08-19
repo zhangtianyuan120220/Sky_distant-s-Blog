@@ -1,4 +1,4 @@
-baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
+﻿baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
 languageCode = "zh-cn"
 title = "Sky_distant's Blog"
 theme = "stack"
@@ -7,13 +7,16 @@ buildFuture = true
 buildDrafts = true
 
 [params]
-  [params.colorScheme]
+  [params.search]
+  enabled = true
+
+[params.colorScheme]
     enabled = true
     default = "auto"
 
 [params.sidebar]
   avatar = "/img/avatar.png"
-  subtitle = "ACM / 算法竞赛笔记记录"
+  subtitle = "ACM / 绠楁硶绔炶禌绗旇璁板綍"
 
 [outputs]
   home = [ "HTML", "JSON" ]
