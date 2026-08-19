@@ -1,0 +1,13 @@
+﻿<script>
+(function() {
+    const originalFetch = window.fetch;
+    window.fetch = function(input, init) {
+        if (typeof input === 'string' && (input === '/index.json' || input.endsWith('/index.json'))) {
+            if (!input.startsWith('/Sky_distant-s-Blog/')) {
+                input = '/Sky_distant-s-Blog/index.json';
+            }
+        }
+        return originalFetch.apply(this, arguments);
+    };
+})();
+</script>
