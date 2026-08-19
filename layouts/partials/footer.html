@@ -1,17 +1,26 @@
 <script>
-window.baseURL = "{{ .Site.BaseURL }}";
 (function() {
-    const targetJSON = "{{ "index.json" | absURL }}";
+    const targetJSON = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/index.json";
+    
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
-        if (!input || input === 'undefined' || (typeof input === 'string' && (input.includes('index.json') || input.includes('undefined')))) {
-            arguments[0] = targetJSON;
+        let url = '';
+        if (typeof input === 'string') url = input;
+        else if (input && input.url) url = input.url;
+        
+        if (!url || url.includes('undefined') || url.endsWith('/index.json') || url === 'index.json' || url.includes('search.json')) {
+            if (typeof input === 'string') {
+                arguments[0] = targetJSON;
+            } else if (input && input.url) {
+                arguments[0] = new Request(targetJSON, init);
+            }
         }
         return originalFetch.apply(this, arguments);
     };
+
     const originalOpen = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function(method, url) {
-        if (!url || url === 'undefined' || (typeof url === 'string' && (url.includes('index.json') || url.includes('undefined')))) {
+        if (!url || url.includes('undefined') || url.endsWith('/index.json') || url === 'index.json' || url.includes('search.json')) {
             arguments[1] = targetJSON;
         }
         return originalOpen.apply(this, arguments);
