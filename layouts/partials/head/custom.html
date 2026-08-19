@@ -1,25 +1,23 @@
 ﻿<script>
 (function() {
-    // 1. 拦截 Fetch
+    const targetJSON = "{{ "index.json" | absURL }}";
+    
+    // 1. 完美拦截 Fetch 请求
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
         if (typeof input === 'string' && input.includes('index.json')) {
-            if (!input.includes('Sky_distant-s-Blog')) {
-                input = '/Sky_distant-s-Blog/index.json';
-            }
+            arguments[0] = targetJSON;
         }
         return originalFetch.apply(this, arguments);
     };
 
-    // 2. 拦截 XMLHttpRequest (XHR)
+    // 2. 完美拦截 XHR 请求
     const originalOpen = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function(method, url) {
         if (typeof url === 'string' && url.includes('index.json')) {
-            if (!url.includes('Sky_distant-s-Blog')) {
-                url = '/Sky_distant-s-Blog/index.json';
-            }
+            arguments[1] = targetJSON;
         }
-        return originalOpen.apply(this, [method, url]);
+        return originalOpen.apply(this, arguments);
     };
 })();
 </script>
