@@ -17,3 +17,8 @@ theme = "stack"
   home = [ "HTML", "JSON" ]
   page = [ "HTML" ]
   section = [ "HTML" ]
+
+[outputFormats.JSON]
+  mediatype = "application/json"
+  baseName = "index"
+  isPlainText = true
