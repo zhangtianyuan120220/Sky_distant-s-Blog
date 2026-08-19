@@ -3,5 +3,5 @@
   {{- if not .Draft -}}
     {{- $pages = $pages | append (dict "title" .Title "permalink" .Permalink "content" .Plain "date" (.Date.Format "2006-01-02") "description" .Description) -}}
   {{- end -}}
--{{- end -}}
+{{- end -}}
 {{- $pages | jsonify -}}
