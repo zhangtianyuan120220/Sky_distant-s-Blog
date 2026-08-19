@@ -9,33 +9,5 @@
         }
         return _fetch.call(this, resource, config);
     };
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const observer = new MutationObserver(function() {
-            const articles = document.querySelectorAll('article');
-            if (articles.length === 0) return;
-
-            const allElems = document.querySelectorAll('h1, h2, h3, div, span');
-            for (let el of allElems) {
-                if (el.children.length > 0) continue;
-                let txt = el.textContent.trim();
-
-                // 替换英文统计文本
-                let match = txt.match(/(\d+)\s*PAGES?\s*\(([\d.]+)\s*SECONDS?\)/i);
-                if (match) {
-                    el.textContent = `${match[1]} 篇文章（耗时 ${match[2]} 秒）`;
-                    break;
-                }
-
-                // 捕获被 search.js 误刷为空的节点并注入中文统计
-                if (el.className && el.className.toLowerCase().includes('search') && (!txt || txt === '搜索')) {
-                    el.textContent = `${articles.length} 篇文章`;
-                    break;
-                }
-            }
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-    });
 })();
 </script>
