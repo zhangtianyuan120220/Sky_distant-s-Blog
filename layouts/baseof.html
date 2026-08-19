@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}" dir="{{ .Site.Language.LanguageDirection | default "ltr" }}">
     <head>
-        {{- block "head" . -}}{{- end -}}
+        {{- partial "head/head" . -}}
     </head>
     <body class="{{ block "body-class" . }}{{ end }}">
-        {{- block "body" . -}}{{- end -}}
+        {{- partial "head/color-scheme-loader" . -}}
+        
+        <div class="container flex mw-full">
+            {{- block "body" . -}}{{- end -}}
+        </div>
+
+        {{- partial "footer/footer" . -}}
     </body>
 </html>
