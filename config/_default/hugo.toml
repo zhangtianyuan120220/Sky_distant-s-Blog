@@ -1,5 +1,5 @@
 baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
-languageCode = "zh-cn"
+locale = "zh-cn"
 defaultContentLanguage = "zh"
 title = "Sky_distant's Blog"
 theme = "stack"
@@ -14,6 +14,6 @@ theme = "stack"
   subtitle = "ACM / 算法竞赛笔记记录"
 
 [outputs]
-  home = [ "HTML", "JSON" ]   # 移除了 "RSS"，避免触发主题内部报错的 rss.xml
+  home = [ "HTML", "JSON" ]
   page = [ "HTML" ]
   section = [ "HTML" ]
