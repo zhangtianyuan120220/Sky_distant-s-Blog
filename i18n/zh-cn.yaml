@@ -1,0 +1,4 @@
+search:
+  title: "搜索"
+  placeholder: "搜索..."
+  resultTitle: "{count} 篇文章（耗时 {time} 秒）"
