@@ -11,3 +11,5 @@ layout: "page"
 ### 🛠️ 常用工具
 - [**GitHub**](https://github.com/) - 代码托管，开源学习
 - [**Google**](https://www.google.com/) - 全球最强搜索引擎
+- [**Gemini**](https://gemini.google.com/app) - 强力AI助手
+- [**Deepseek**](https://chat.deepseek.com/) - 中国领先的AI助手

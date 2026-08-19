@@ -16,7 +16,7 @@ buildDrafts = true
 
 [params.sidebar]
   avatar = "/img/avatar.png"
-  subtitle = "ACM / 绠楁硶绔炶禌绗旇璁板綍"
+  subtitle = "Sky_dstant的个人记录"
 
 [outputs]
   home = [ "HTML", "JSON" ]

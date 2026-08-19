@@ -34,15 +34,20 @@
 [[main]]
     identifier = "roadmap"
     name = "开发计划"
-    url = "/page/roadmap/"
+    url = "/roadmap/"
     weight = 5
     [main.params]
         icon = "code"
 
-# 顶部社交链接
 [[social]]
     identifier = "github"
     name = "GitHub"
     url = "https://github.com/zhangtianyuan120220"
     [social.params]
         icon = "brand-github"
+[[social]]
+    identifier = "luogu"
+    name = "luogu"
+    url = "https://www.luogu.com.cn/user/1317319"
+    [social.params]
+        icon = "luogu"
