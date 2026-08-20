@@ -27,3 +27,6 @@ buildDrafts = true
   mediatype = "application/json"
   baseName = "index"
   isPlainText = true
+
+[params.favicon]
+    src = "favicon.ico"
