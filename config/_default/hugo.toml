@@ -28,5 +28,5 @@ buildDrafts = true
   baseName = "index"
   isPlainText = true
 
-[params.favicon]
-    src = "favicon.ico"
+[params]
+    favicon = "favicon.ico"
