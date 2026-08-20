@@ -21,3 +21,5 @@ languageCode = "zh"
         { type = "tag-cloud" },
         { type = "archives" }
     ]
+[article]
+    math = true
