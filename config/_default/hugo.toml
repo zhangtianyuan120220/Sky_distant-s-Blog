@@ -1,4 +1,4 @@
-baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
+baseURL = "https://openmc.qzz.io/"
 locale = "zh-cn"
 title = "Sky_distant's Blog"
 theme = "stack"
@@ -7,26 +7,25 @@ buildFuture = true
 buildDrafts = true
 
 [params]
-  [params.search]
-  enabled = true
+    favicon = "favicon.ico"
+    
+    [params.search]
+        enabled = true
 
-[params.colorScheme]
-    enabled = true
-    default = "auto"
+    [params.colorScheme]
+        enabled = true
+        default = "auto"
 
-[params.sidebar]
-  avatar = "/img/avatar.png"
-  subtitle = "Sky_dstant的个人记录"
+    [params.sidebar]
+        avatar = "/img/avatar.png"
+        subtitle = "Sky_distant的个人记录"
 
 [outputs]
-  home = [ "HTML", "JSON" ]
-  page = [ "HTML" ]
-  section = [ "HTML" ]
+    home = [ "HTML", "JSON" ]
+    page = [ "HTML" ]
+    section = [ "HTML" ]
 
 [outputFormats.JSON]
-  mediatype = "application/json"
-  baseName = "index"
-  isPlainText = true
-
-[params]
-    favicon = "favicon.ico"
+    mediatype = "application/json"
+    baseName = "index"
+    isPlainText = true
