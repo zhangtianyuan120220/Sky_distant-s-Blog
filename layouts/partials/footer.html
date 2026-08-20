@@ -1,13 +1,49 @@
+<!-- 自定义静态逻辑整合：1. VuePress 容器渲染 2. 数学公式二次渲染 3. 搜索 API 路径劫持 -->
 <script>
 (function() {
+    // ==========================================
+    // 1. 全局渲染 VuePress/VitePress 风格容器 (Callout)
+    // ==========================================
+    document.addEventListener("DOMContentLoaded", function() {
+        // 获取文章主体区域，适配绝大多数 Hugo 主题的选择器
+        const container = document.querySelector('article') || 
+                          document.querySelector('.post-content') || 
+                          document.querySelector('.single-content') || 
+                          document.querySelector('.entry-content') ||
+                          document.body;
+        if (!container) return;
+
+        // 正则解析匹配 :::type[title] ... ::: 语法（支持自动剥离外层 <p> 标签）
+        const regex = /(?:<p>)?:::(\w+)(?:\[(.*?)\])?[\r\n]+([\s\S]*?):::(?:<\/p>)?/g;
+
+        container.innerHTML = container.innerHTML.replace(regex, function(match, type, title, content) {
+            const displayTitle = title || type.toUpperCase();
+            return `
+              <div class="custom-callout callout-${type.toLowerCase()}">
+                <div class="callout-title">${displayTitle}</div>
+                <div class="callout-body">${content}</div>
+              </div>
+            `;
+        });
+
+        // 若页面加载了 KaTeX 数学公式库，对渲染后的 Callout 容器重新触发渲染以确保公式正常显示
+        if (typeof renderMathInElement === 'function') {
+            renderMathInElement(container);
+        }
+    });
+
+    // ==========================================
+    // 2. 劫持并重定向搜索 JSON 请求路径
+    // ==========================================
     const targetJSON = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/index.json";
-    
+
+    // 劫持全局 Fetch API
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
         let url = '';
         if (typeof input === 'string') url = input;
         else if (input && input.url) url = input.url;
-        
+
         if (!url || url.includes('undefined') || url.endsWith('/index.json') || url === 'index.json' || url.includes('search.json')) {
             if (typeof input === 'string') {
                 arguments[0] = targetJSON;
@@ -18,6 +54,7 @@
         return originalFetch.apply(this, arguments);
     };
 
+    // 劫持全局 XMLHttpRequest (XHR)
     const originalOpen = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function(method, url) {
         if (!url || url.includes('undefined') || url.endsWith('/index.json') || url === 'index.json' || url.includes('search.json')) {
@@ -27,3 +64,70 @@
     };
 })();
 </script>
+
+<!-- 提示框配套样式布局 -->
+<style>
+.custom-callout {
+    margin: 1.5rem 0;
+    padding: 12px 16px;
+    border-left: 4px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: #fbfbfb;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.custom-callout .callout-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+}
+
+.custom-callout .callout-body {
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.custom-callout .callout-body p {
+    margin: 0;
+}
+
+/* warning (警告框) - 黄色系 */
+.custom-callout.callout-warning {
+    border-left-color: #faad14;
+    background-color: #fffbe6;
+}
+.custom-callout.callout-warning .callout-title {
+    color: #d48806;
+}
+
+/* info / tip (信息提示框) - 蓝色系 */
+.custom-callout.callout-info,
+.custom-callout.callout-tip {
+    border-left-color: #1890ff;
+    background-color: #e6f7ff;
+}
+.custom-callout.callout-info .callout-title,
+.custom-callout.callout-tip .callout-title {
+    color: #096dd9;
+}
+
+/* danger / error (错误警告框) - 红色系 */
+.custom-callout.callout-danger,
+.custom-callout.callout-error {
+    border-left-color: #ff4d4f;
+    background-color: #fff2f0;
+}
+.custom-callout.callout-danger .callout-title,
+.custom-callout.callout-error .callout-title {
+    color: #cf1322;
+}
+
+/* success (成功框) - 绿色系 */
+.custom-callout.callout-success {
+    border-left-color: #52c41a;
+    background-color: #f6ffed;
+}
+.custom-callout.callout-success .callout-title {
+    color: #389e0d;
+}
+</style>
