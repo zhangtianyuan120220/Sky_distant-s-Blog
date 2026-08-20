@@ -1,5 +1,5 @@
 baseURL = "https://zhangtianyuan120220.github.io/Sky_distant-s-Blog/"
-languageCode = "zh-cn"
+locale = "zh-cn"
 title = "Sky_distant's Blog"
 theme = "stack"
 
