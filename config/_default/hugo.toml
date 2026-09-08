@@ -1,5 +1,5 @@
 baseURL = "https://openmc.qzz.io/"
-locale = "zh-cn"
+defaultContentLanguage = "zh-cn"
 title = "Sky_distant's Blog"
 theme = "stack"
 
