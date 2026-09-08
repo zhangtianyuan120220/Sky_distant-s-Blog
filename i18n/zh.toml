@@ -33,10 +33,10 @@ darkMode   = "暗色模式"
         title = "归档"
         more  = "更多"
 
-    [widget.tagCloud]
-        title = "标签云"
+    [widget.tag]
+        title = "标签"
 
-    [widget.categoriesCloud]
+    [widget.category]
         title = "分类"
 
 [search]
